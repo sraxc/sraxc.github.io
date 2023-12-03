@@ -10,26 +10,32 @@
     <div id="main" style="height: 100%;width: 100%;max-width: 500px;">
         <p style="text-align: center;">请记住</p>
         <div id="rembox" style="height: 100%;">
-            <img id="img0" src="img/1.jpg" style="width: 100%">
+            <h1 id="img0">1</h1>
         </div>
         <div>
             <hr>
-            <p style="text-align: center;">请选择前一张照片</p>
-            <table>
+            <p style="text-align: center;">请选择前一个数字</p>
+            <table style="width: 100%;">
                 <tr>
-                    <td><img id="img1" src="img/1.jpg" style="width: 100%" onclick="play(1)"></td>
-                    <td><img id="img2" src="img/1.jpg" style="width: 100%" onclick="play(2)"></td>
+                    <td><h1 id="img1" style="width: 100%" onclick="play(1)">1</h1></td>
+                    <td><h1 id="img2" style="width: 100%" onclick="play(2)">2</td>
                 </tr>
                 <tr>
-                    <td><img id="img3" src="img/1.jpg" style="width: 100%" onclick="play(3)"></td>
-                    <td><img id="img4" src="img/1.jpg" style="width: 100%" onclick="play(4)"></td>
+                    <td><h1 id="img3" style="width: 100%" onclick="play(3)">3</td>
+                    <td><h1 id="img4" style="width: 100%" onclick="play(4)">4</td>
                 </tr>
             </table>
         </div>
         <p id="demo">分数：0</p>
     </div>
 </body>
-
+<style>
+    h1{width: 100%;
+    text-align: center;
+    border: 1px solid;
+    }
+    td{width: 50%;}
+</style>
 <script>
     var min = 1, max = 4;
     var reinem = 1;
@@ -41,7 +47,7 @@
 
     function changemainimg() {
         reinem = Math.floor(Math.random() * (max - min + 1)) + min;
-        document.getElementById("img0").src = path + String(reinem) + ".jpg";
+        document.getElementById("img0").innerHTML=reinem;
     };
     function changelist() {
         a1 = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -51,10 +57,10 @@
         while (a2 == a1) { a2 = Math.floor(Math.random() * (max - min + 1)) + min; };
         while (a3 == a1 | a3 == a2) { a3 = Math.floor(Math.random() * (max - min + 1)) + min; };
         while (a4 == a1 | a4 == a2 | a4 == a3) { a4 = Math.floor(Math.random() * (max - min + 1)) + min; }
-        document.getElementById("img1").src = path + String(a1) + ".jpg";
-        document.getElementById("img2").src = path + String(a2) + ".jpg";
-        document.getElementById("img3").src = path + String(a3) + ".jpg";
-        document.getElementById("img4").src = path + String(a4) + ".jpg";
+        document.getElementById("img1").innerHTML = a1;
+        document.getElementById("img2").innerHTML = a2;
+        document.getElementById("img3").innerHTML = a3;
+        document.getElementById("img4").innerHTML = a4;
     };
     function play(e) {
         lastreinem = lreinem;
