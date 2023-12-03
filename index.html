@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main" style="height: 100%;width: 100%;max-width: 500px;">
+        <p style="text-align: center;">请记住</p>
+        <div id="rembox" style="height: 100%;">
+            <img id="img0" src="img/1.jpg" style="width: 100%">
+        </div>
+        <div>
+            <hr>
+            <p style="text-align: center;">请选择前一张照片</p>
+            <table>
+                <tr>
+                    <td><img id="img1" src="img/1.jpg" style="width: 100%" onclick="play(1)"></td>
+                    <td><img id="img2" src="img/1.jpg" style="width: 100%" onclick="play(2)"></td>
+                </tr>
+                <tr>
+                    <td><img id="img3" src="img/1.jpg" style="width: 100%" onclick="play(3)"></td>
+                    <td><img id="img4" src="img/1.jpg" style="width: 100%" onclick="play(4)"></td>
+                </tr>
+            </table>
+        </div>
+        <p id="demo">分数：0</p>
+    </div>
+</body>
+
+<script>
+    var min = 1, max = 4;
+    var reinem = 1;
+    var path = "img/";
+    var a1, a2, a3, a4 = 1;
+    var score = 0;
+    var lastreinem = 1;
+    var lreinem = 1;
+
+    function changemainimg() {
+        reinem = Math.floor(Math.random() * (max - min + 1)) + min;
+        document.getElementById("img0").src = path + String(reinem) + ".jpg";
+    };
+    function changelist() {
+        a1 = Math.floor(Math.random() * (max - min + 1)) + min;
+        a2 = Math.floor(Math.random() * (max - min + 1)) + min;
+        a3 = Math.floor(Math.random() * (max - min + 1)) + min;
+        a4 = Math.floor(Math.random() * (max - min + 1)) + min;
+        while (a2 == a1) { a2 = Math.floor(Math.random() * (max - min + 1)) + min; };
+        while (a3 == a1 | a3 == a2) { a3 = Math.floor(Math.random() * (max - min + 1)) + min; };
+        while (a4 == a1 | a4 == a2 | a4 == a3) { a4 = Math.floor(Math.random() * (max - min + 1)) + min; }
+        document.getElementById("img1").src = path + String(a1) + ".jpg";
+        document.getElementById("img2").src = path + String(a2) + ".jpg";
+        document.getElementById("img3").src = path + String(a3) + ".jpg";
+        document.getElementById("img4").src = path + String(a4) + ".jpg";
+    };
+    function play(e) {
+        lastreinem = lreinem;
+        lreinem = reinem;
+        changemainimg();
+        if (e == 1) {
+            if (a1 == lastreinem) { score = score + 1 }
+        } else if (e == 2) {
+            if (a2 == lastreinem) { score = score + 1 }
+        } else if (e == 3) {
+            if (a3 == lastreinem) { score = score + 1 }
+        } else if (e == 4) {
+            if (a4 == lastreinem) { score = score + 1 }
+        }
+        changelist();
+        document.getElementById("demo").innerHTML="分数：" + score;
+    };
+</script>
+
+</html>
